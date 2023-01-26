@@ -9,7 +9,8 @@ class Number:
 
         returns: int
         """
-        pass
+        a=self.value
+        return a 
 
     def is_odd(self):
         """
@@ -18,7 +19,11 @@ class Number:
         returns: bool
 
         """
-        pass
+        if self.value%2!=0:
+            ans=True
+        else:
+            ans=False
+        return ans
 
     def is_even(self):
         """
@@ -26,7 +31,11 @@ class Number:
 
         returns: bool
         """
-        pass
+        if self.value%2==0:
+            ans=True
+        else:
+            ans=False
+        return ans
 
     def is_prime(self):
         """
@@ -34,7 +43,19 @@ class Number:
 
         returns: bool
         """
-        pass
+        from math import sqrt
+        a = 0
+        if(self.value > 1):
+	        for i in range(2, int(sqrt(self.value)) + 1):
+		        if (self.value % i == 0):
+			        a= 1
+	        if (a == 0):
+                    ans=True
+	        else:
+                    ans=False
+        else:
+            ans=False
+        return ans
 
     def get_divisors(self):
         """
@@ -42,7 +63,11 @@ class Number:
 
         returns: list
         """
-        pass
+        a=[]
+        for i in range(1, self.value+1):
+            if self.value%i==0:
+                a.append(i)
+        return a
 
     def get_length(self):
         """
@@ -50,7 +75,11 @@ class Number:
 
         returns: int
         """
-        pass
+        a = 0
+        while self.value != 0:
+            self.value //= 10
+            a+=1
+        return a
 
     def get_sum(self):
         """
@@ -58,7 +87,11 @@ class Number:
 
         returns: int
         """
-        pass
+        a = self.value%10
+        while self.value != 0:
+            self.value //= 10
+            a += self.value%10
+        return a
 
     def get_reverse(self):
         """
@@ -66,7 +99,13 @@ class Number:
 
         returns: int
         """
-        pass
+        rn=0
+        while self.value!=0:
+            digit=self.value%10
+            rn=10*rn
+            rn=rn+digit
+            self.value=self.value//10
+        return rn
 
     def is_palindrome(self):
         """
@@ -74,7 +113,11 @@ class Number:
 
         returns: bool
         """
-        pass
+        if str(self.value)==str(self.value)[::-1]:
+            ans=True
+        else:
+            ans=False
+        return ans
 
     def get_digits(self):
         """
@@ -82,7 +125,12 @@ class Number:
 
         returns: list
         """
-        pass
+        a = [self.value%10]
+        while self.value != 0:
+            self.value //= 10
+            a.append(self.value%10)
+        b=list(reversed(a))[1:len(a)]
+        return b
 
     def get_max(self):
         """
@@ -90,7 +138,13 @@ class Number:
 
         returns: int
         """
-        pass
+        a = [self.value%10]
+        while self.value != 0:
+            self.value //= 10
+            a.append(self.value%10)
+        b=list(reversed(a))[1:len(a)]
+        c=max(b)
+        return c
 
     def get_min(self):
         """
@@ -98,7 +152,13 @@ class Number:
 
         returns: int
         """
-        pass
+        a = [self.value%10]
+        while self.value != 0:
+            self.value //= 10
+            a.append(self.value%10)
+        b=list(reversed(a))[1:len(a)]
+        c=min(b)
+        return c
 
     def get_average(self):
         """
@@ -106,7 +166,20 @@ class Number:
 
         returns: float
         """
-        pass
+        a = self.value%10
+        while self.value != 0:
+            self.value //= 10
+            a += self.value%10
+        b=0
+        while self.value != 0:
+            self.value //= 10
+            b+=1
+        c=0
+        try:
+            c+=a/b 
+        except ZeroDivisionError:
+            pass
+        
 
     def get_median(self):
         """
@@ -114,7 +187,14 @@ class Number:
 
         returns: float
         """
-        pass
+        import statistics
+        a = [self.value%10]
+        while self.value != 0:
+            self.value //= 10
+            a.append(self.value%10)
+        b=list(reversed(a))[1:len(a)]
+        c=statistics.median(b)
+        return c
 
     def get_range(self):
         """
@@ -122,7 +202,13 @@ class Number:
 
         returns: list
         """
-        pass
+        a = [self.value%10]
+        while self.value != 0:
+            self.value //= 10
+            a.append(self.value%10)
+        b=list(reversed(a))[1:len(a)]
+        c=list(range(min(b),max(b)+1))
+        return c
 
     def get_frequency(self):
         """
@@ -130,8 +216,17 @@ class Number:
 
         returns: dict
         """
-        pass
+        a = [self.value%10]
+        while self.value != 0:
+            self.value //= 10
+            a.append(self.value%10)
+        b=list(reversed(a))[1:len(a)]
+        c={}
+        for i in b:
+            c.update({i: b.count(i)})
+        return c
     
 
 # Create a new instance of Number
-number = Number(3)
+number = Number(32126)
+print(number.get_frequency())
