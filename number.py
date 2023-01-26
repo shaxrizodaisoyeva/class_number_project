@@ -79,6 +79,8 @@ class Number:
         while self.value != 0:
             self.value //= 10
             a+=1
+        if self.value==0:
+            a=1
         return a
 
     def get_sum(self):
@@ -130,8 +132,6 @@ class Number:
             self.value //= 10
             a.append(self.value%10)
         b=list(reversed(a))[1:len(a)]
-        if self.value==0:
-            b=[0]
         return b
 
     def get_max(self):
@@ -231,4 +231,4 @@ class Number:
 
 # Create a new instance of Number
 number = Number(0)
-print(number.get_digits())
+print(number.get_length())
