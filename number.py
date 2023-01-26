@@ -130,6 +130,8 @@ class Number:
             self.value //= 10
             a.append(self.value%10)
         b=list(reversed(a))[1:len(a)]
+        if self.value==0:
+            b=[0]
         return b
 
     def get_max(self):
@@ -228,5 +230,5 @@ class Number:
     
 
 # Create a new instance of Number
-number = Number(32126)
-print(number.get_frequency())
+number = Number(0)
+print(number.get_digits())
