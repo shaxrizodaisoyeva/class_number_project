@@ -75,13 +75,7 @@ class Number:
 
         returns: int
         """
-        a = 0
-        while self.value != 0:
-            self.value //= 10
-            a+=1
-        if self.value==0:
-            a=1
-        return a
+        return len(str(self.value))
 
     def get_sum(self):
         """
@@ -127,12 +121,8 @@ class Number:
 
         returns: list
         """
-        a = [self.value%10]
-        while self.value != 0:
-            self.value //= 10
-            a.append(self.value%10)
-        b=list(reversed(a))[1:len(a)]
-        return b
+        a=str(self.value)
+        return [int(i) for i in a]
 
     def get_max(self):
         """
@@ -168,19 +158,11 @@ class Number:
 
         returns: float
         """
-        a = self.value%10
-        while self.value != 0:
-            self.value //= 10
-            a += self.value%10
-        b=0
-        while self.value != 0:
-            self.value //= 10
-            b+=1
-        c=0
-        try:
-            c+=a/b 
-        except ZeroDivisionError:
-            pass
+        a=str(self.value)
+        sum=0
+        for i in a:
+            sum+=int(i)
+        return sum/len(a)
         
 
     def get_median(self):
@@ -205,11 +187,13 @@ class Number:
         returns: list
         """
         a = [self.value%10]
+        c=[]
         while self.value != 0:
             self.value //= 10
             a.append(self.value%10)
         b=list(reversed(a))[1:len(a)]
-        c=list(range(min(b),max(b)+1))
+        c.append(min(b))
+        c.append(max(b))
         return c
 
     def get_frequency(self):
@@ -230,5 +214,5 @@ class Number:
     
 
 # Create a new instance of Number
-number = Number(0)
-print(number.get_length())
+number = Number(237378555685)
+print(number.get_frequency())
