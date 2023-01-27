@@ -186,14 +186,9 @@ class Number:
 
         returns: list
         """
-        a = [self.value%10]
         c=[]
-        while self.value != 0:
-            self.value //= 10
-            a.append(self.value%10)
-        b=list(reversed(a))[1:len(a)]
-        c.append(min(b))
-        c.append(max(b))
+        c.append(min(map(int, str(self.value))))
+        c.append(max(map(int, str(self.value))))
         return c
 
     def get_frequency(self):
@@ -202,17 +197,20 @@ class Number:
 
         returns: dict
         """
-        a = [self.value%10]
-        while self.value != 0:
-            self.value //= 10
-            a.append(self.value%10)
-        b=list(reversed(a))[1:len(a)]
         c={}
-        for i in b:
-            c.update({i: b.count(i)})
+        if self.value==0:
+            c.update({0:1})
+        else:
+            a = [self.value%10]
+            while self.value != 0:
+                self.value //= 10
+                a.append(self.value%10)
+            b=list(reversed(a))[1:len(a)]
+            for i in b:
+                c.update({i: b.count(i)})
         return c
     
 
 # Create a new instance of Number
-number = Number(237378555685)
+number = Number(6746864446)
 print(number.get_frequency())
